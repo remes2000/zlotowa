@@ -1,15 +1,29 @@
 import React from 'react'
-import { StackNavigator } from 'react-navigation'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-import Dashboard from './Screens/Dashnoard'
+import AppReducer from './reducers';
+import AppWithNavigationState from './navigators/AppNavigator';
+import { middleware } from './utils/redux';
+import thunk from 'redux-thunk'
 
-const rootNavigation = StackNavigator({
-    Main: {
-        screen: Dashboard,
-        navigationOptions: {
-            title: 'Złotówa'
-        }
+const store = createStore(
+  AppReducer,
+  applyMiddleware(middleware, thunk)
+)
+
+class Zlotowa extends React.Component {
+    constructor(props){
+        super(props)
     }
-})
 
-export default rootNavigation
+  render() {
+    return (
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
+    )
+  }
+}
+
+export default Zlotowa
