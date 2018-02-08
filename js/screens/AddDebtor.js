@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { Container, Form, Item, Input, Button, Text, Content, Picker } from 'native-base'
 import { StyleSheet, BackHandler } from 'react-native'
+import _ from 'lodash'
+import { connect } from 'react-redux'
+import * as actions from '../actions'
 
 class AddDebtor extends Component{
     constructor(props){
@@ -14,6 +17,15 @@ class AddDebtor extends Component{
             errors: {}
         }
     }
+
+    colorVariables = [
+        "#3F51B5",
+        "#62B1F6",
+        "#d9534f",
+        "#f0ad4e",
+        "#000",
+        "#f4f4f4"
+    ]
 
     onNameFieldChange = value => {
         this.setState({
@@ -43,7 +55,7 @@ class AddDebtor extends Component{
         const errors = this.validateForm()
         console.log(errors)
         if(_.isEmpty(errors)){
-            console.log('ok')
+            this.props.addDebtor(this.state, _.sample(this.colorVariables))
         }
         else
             this.setState({ errors })
@@ -117,4 +129,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default AddDebtor
+export default connect(null, actions)(AddDebtor)

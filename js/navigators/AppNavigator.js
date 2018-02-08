@@ -6,6 +6,7 @@ import { BackHandler } from 'react-native'
 
 import Dashboard from '../screens/Dashboard'
 import AddDebtor from '../screens/AddDebtor'
+import DebtorProfile from '../screens/DebtorProfile'
 import { addListener } from '../utils/redux';
 
 export const AppNavigator = StackNavigator({
@@ -19,6 +20,12 @@ export const AppNavigator = StackNavigator({
         screen: AddDebtor,
         navigationOptions: {
             title: "Dodaj dłużnika"
+        }
+    },
+    DebtorProfile: {
+        screen: DebtorProfile,
+        navigationOptions: {
+            title: "Dłużnik"
         }
     }
 })

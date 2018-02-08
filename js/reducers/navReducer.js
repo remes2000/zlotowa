@@ -13,6 +13,17 @@ function navReducer(state = initialNavState, action) {
                 state
             )
         break
+        case 'Main':
+            nextState = AppNavigator.router.getStateForAction(
+                AppNavigator.router.getActionForPathAndParams('Main')
+            )
+        break
+        case 'DebtorProfile':
+            nextState = AppNavigator.router.getStateForAction(
+                NavigationActions.navigate({ routeName: 'DebtorProfile' }),
+                state
+            )
+        break
         default:
             nextState = AppNavigator.router.getStateForAction(action, state)
         break
